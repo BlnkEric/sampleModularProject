@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Users\Database\Seeders;
+namespace Modules\RolePermission\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Users\Entities\User;
 use Illuminate\Database\Eloquent\Model;
+use Modules\RolePermission\Entities\Role;
 
-class UsersDatabaseSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,8 +17,7 @@ class UsersDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
-        User::newFactory(10)->create();
+        Role::factory(5)->create();
 
     }
 }

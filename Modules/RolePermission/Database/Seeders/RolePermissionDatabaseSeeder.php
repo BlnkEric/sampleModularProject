@@ -3,7 +3,10 @@
 namespace Modules\RolePermission\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Users\Entities\User;
 use Illuminate\Database\Eloquent\Model;
+use Modules\RolePermission\Entities\Role;
+use Modules\RolePermission\Entities\Permission;
 
 class RolePermissionDatabaseSeeder extends Seeder
 {
@@ -16,6 +19,19 @@ class RolePermissionDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call([
+            PermissionTableSeeder::class,
+            RoleTableSeeder::class,
+        ]);
+
+        
+        // $rolePermission = Product::factory(50)->make();
+        $users = User::get();
+        $roles = Role::get();
+        $permissions = Permission::get()->pluck('id');
+        // dd(array_values($roles->random(2)->pluck('id')->toarray()));
+        foreach ($users as $user) {
+            $user->roles()->attach();
+        }
     }
 }

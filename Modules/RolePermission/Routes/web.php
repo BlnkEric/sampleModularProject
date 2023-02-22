@@ -1,5 +1,7 @@
 <?php
 
+use Modules\RolePermission\Http\Controllers\PermissionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,7 @@
 */
 
 Route::prefix('rolepermission')->group(function() {
-    Route::get('/', 'RolePermissionController@index');
+    Route::get('/', 'RolePermissionController@index')->name('roleindex');
+    Route::get('/roles', [PermissionController::class,'Permission']);
+    Route::get('/test', [PermissionController::class,'test']);
 });
