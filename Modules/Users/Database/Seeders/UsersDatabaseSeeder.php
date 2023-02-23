@@ -18,7 +18,7 @@ class UsersDatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-        User::newFactory(10)->create();
+        User::newFactory(10)->createAdmin()->create();
 
     }
 }

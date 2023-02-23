@@ -2,6 +2,7 @@
 namespace Modules\Users\Database\factories;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
@@ -39,6 +40,18 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'email_verified_at' => null,
+            ];
+        });
+    }
+
+    public function createAdmin()
+    {
+        // admin@gmail.com -> safe valid Email .. @admin.com is not valid
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'admin',
+                'password' => Hash::make('12345678'),
+                'email'=>'admin@gmail.com',
             ];
         });
     }
